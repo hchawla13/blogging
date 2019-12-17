@@ -9,7 +9,7 @@ export default class Listing extends Component {
         super(props);
         this.state = {
             data:data,
-            filtered: []
+            filtered: JSON.parse(localStorage.getItem('filtered')) || []
         };
     }
     onFilteredChangeCustom = (value, accessor) => {
@@ -32,21 +32,16 @@ export default class Listing extends Component {
         }
     
         this.setState({ filtered: filtered });
-        // localStorage.setItem('filtered',JSON.stringify(filtered))
-        // var filterItemArray = JSON.parse(localStorage.getItem('filtered'))
+        localStorage.setItem('filtered',JSON.stringify(filtered))
+        var filterItemArray = JSON.parse(localStorage.getItem('filtered'))
       };
     
     render() {
         const { data } = this.state;
-        const columns = [{  
-            Header: 'Id',  
-            accessor: 'id',
-            
-        },
+        const columns = [
         {  
             Header: 'Title',  
             accessor: 'title',
-            
         },
         {  
             Header: 'Author',  
