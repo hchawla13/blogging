@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import data from './blog.json';
-import BlogItem from './BlogItem'
 import "react-table/react-table.css";  
 import ReactTable from "react-table";
 
 export default class Listing extends Component {
     constructor(props) {
         super(props);
+        if(!localStorage.getItem('data')){
+          localStorage.setItem('data',JSON.stringify(data))
+        }
         this.state = {
-            data:data,
+            data:JSON.parse(localStorage.getItem('data')),
             filtered: JSON.parse(localStorage.getItem('filtered')) || []
         };
     }
