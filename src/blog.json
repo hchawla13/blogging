@@ -1,0 +1,34 @@
+[
+    {
+        "id":1,
+        "title":"This is blog 1",
+        "author":"Demo author1",
+        "category":"category 1",
+        "publishdate":"01-01-2019",
+        "content":"Content of blog 1"
+    },
+    {
+        "id":2,
+        "title":"This is blog 2",
+        "author":"Demo author2",
+        "category":"category 2",
+        "publishdate":"02-02-2019",
+        "content":"Content of blog 2"
+    },
+    {
+        "id":3,
+        "title":"This is blog 3",
+        "author":"Demo author3",
+        "category":"category 3",
+        "publishdate":"03-03-2019",
+        "content":"Content of blog 3"
+    },
+    {
+        "id":4,
+        "title":"This is blog 4",
+        "author":"Demo author4",
+        "category":"category 4",
+        "publishdate":"04-04-2019",
+        "content":"Content of blog 4"
+    }
+]
