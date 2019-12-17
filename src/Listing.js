@@ -4,19 +4,15 @@ import BlogItem from './BlogItem'
 import "react-table/react-table.css";  
 import ReactTable from "react-table";
 
-
 export default class Listing extends Component {
     constructor(props) {
         super(props);
         this.state = {
             data:data,
-            filtered: [],
-            select2: undefined
+            filtered: []
         };
     }
-
     onFilteredChangeCustom = (value, accessor) => {
-        console.log("filtering data")
         let filtered = this.state.filtered;
         let insertNewFilter = 1;
     
@@ -36,11 +32,18 @@ export default class Listing extends Component {
         }
     
         this.setState({ filtered: filtered });
+        // localStorage.setItem('filtered',JSON.stringify(filtered))
+        // var filterItemArray = JSON.parse(localStorage.getItem('filtered'))
       };
     
     render() {
         const { data } = this.state;
         const columns = [{  
+            Header: 'Id',  
+            accessor: 'id',
+            
+        },
+        {  
             Header: 'Title',  
             accessor: 'title',
             
@@ -48,15 +51,23 @@ export default class Listing extends Component {
         {  
             Header: 'Author',  
             accessor: 'author'  
+        },
+        {  
+            Header: 'Category',  
+            accessor: 'category',
+            
+        },
+        {  
+            Header: 'Publish Date',  
+            accessor: 'publishdate',
+            
         }]  
-        console.log("data",data)
         return (
             <div className="listing">
-                <ReactTable  
+                <ReactTable 
                   data={data}  
                   filterable
                   filtered={this.state.filtered}
-                  columns={columns}  
                   onFilteredChange={(filtered, column, value) => {
                     this.onFilteredChangeCustom(value, column.id || column.accessor);
                   }}
@@ -72,11 +83,17 @@ export default class Listing extends Component {
                         : true;
                     }
                   }}
-                  defaultPageSize = {2}
-                  defaultFilterMethod={(filter, row) =>
-                    String(row[filter.id]) === filter.value
-                  }  
-                  pageSizeOptions = {[2,4, 6]}  
+                  defaultPageSize = {4}
+                  columns={columns}
+                  pageSizeOptions = {[4,8,12]}  
+                  getTrProps={(state, rowInfo) => ({
+                    onClick: () => {
+                        localStorage.setItem('dataVal',JSON.stringify(rowInfo.original))
+                        return (
+                            this.props.history.push(`/blog/${JSON.stringify(rowInfo.original.id)}`)
+                        )
+                    }
+                  })}
               />  
                 
             </div>

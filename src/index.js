@@ -11,20 +11,8 @@ import * as serviceWorker from './serviceWorker';
 const routing = (
     <Router>
         <div>
-            <ul>
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
-                <li>
-                    <Link to="/blog">Blog</Link>
-                </li>
-                <li>
-                    <Link to="/listing">Listing</Link>
-                </li>
-            </ul>
-        <Route exact path="/" component={App} />
-        <Route path="/blog" component={Blog} />
-        <Route path="/listing" component={Listing} />
+        <Route exact path="/" component={Listing} />
+        <Route path="/blog/:id" component={Blog} />
       </div>
     </Router>
   )
